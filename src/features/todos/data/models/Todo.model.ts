@@ -1,8 +1,8 @@
 import { Serializable, jsonName, jsonProperty } from "ts-serializable";
-import { ITodoEntity } from "../../domain/entities/Todo.entity";
+import { TodoEntity } from "../../domain/entities/Todo.entity";
 import { MaxLength } from "class-validator";
 
-export class TodoModel extends Serializable implements ITodoEntity {
+export class TodoModel extends Serializable implements TodoEntity {
   @jsonProperty(Number)
   public id: number = 0;
 

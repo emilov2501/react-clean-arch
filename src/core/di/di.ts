@@ -3,9 +3,9 @@ import { TodoRepositoryImpl } from "../../features/todos/data/repository_impl/To
 import { TodoRepository } from "../../features/todos/domain/repository/Todo.repository";
 
 import { TodoApiService } from "../../features/todos/data/api/Todo.api";
-import { GetTodosUseCase } from "../../features/todos/domain/usecases/getTodos";
 import { ServiceBuilder } from "ts-retrofit";
 import { TodoStore } from "../../features/todos/presentation/store/Todo.store";
+import { TodoService } from "../../features/todos/domain/services/Todo.service";
 
 export const DI = createContainer({
   injectionMode: InjectionMode.CLASSIC,
@@ -16,12 +16,15 @@ DI.register({
     new ServiceBuilder().setStandalone(true)
   ).singleton(),
 
-  //Services
+  //Api
   todoApiService: asClass<TodoApiService>(TodoApiService).singleton(),
+
+  //Repositories
+
   todosRepository: asClass<TodoRepository>(TodoRepositoryImpl).singleton(),
 
-  //UseCases
-  getTodosUseCase: asClass<GetTodosUseCase>(GetTodosUseCase).singleton(),
+  //Services
+  todoService: asClass<TodoService>(TodoService).singleton(),
 
   //Store
   todoStore: asClass<TodoStore>(TodoStore).scoped(),

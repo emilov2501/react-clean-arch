@@ -1,16 +1,16 @@
 import { makeAutoObservable } from "mobx";
-import { ITodoEntity } from "../../domain/entities/Todo.entity";
-import { GetTodosUseCase } from "../../domain/usecases/getTodos";
+import { TodoEntity } from "../../domain/entities/Todo.entity";
+import { TodoService } from "../../domain/services/Todo.service";
 
 export class TodoStore {
-  public todos: ITodoEntity[] = [];
+  public todos: TodoEntity[] = [];
 
-  constructor(private getTodosUseCase: GetTodosUseCase) {
+  constructor(private todoService: TodoService) {
     makeAutoObservable(this, {}, { deep: true });
   }
 
   public fetchTodos = async (): Promise<void> => {
-    const response = await this.getTodosUseCase.call();
+    const response = await this.todoService.getTodos();
     this.todos = response;
   };
 
