@@ -1,4 +1,4 @@
-import { TodoEntity } from "../entities/Todo.entity";
+import { TodoEntity, TodoQueriesEntity } from "../entities/Todo.entity";
 import { TodoRepository } from "../repository/Todo.repository";
 
 export class TodoService {
@@ -6,5 +6,9 @@ export class TodoService {
 
   public getTodos(): Promise<TodoEntity[]> {
     return this.todosRepository.getTodos();
+  }
+
+  public getSearchTodos(params: TodoQueriesEntity): Promise<TodoEntity[]> {
+    return this.todosRepository.getTodos({ query: params?.query });
   }
 }

@@ -1,5 +1,7 @@
-import { ITodoEntity } from "../entities/Todo.entity";
+import { TodoEntity, TodoQueriesEntity } from "../entities/Todo.entity";
 
 export abstract class TodoRepository {
-  public abstract getTodos(): Promise<Array<ITodoEntity>>;
+  public abstract getTodos(
+    params?: TodoQueriesEntity
+  ): Promise<Array<TodoEntity>>;
 }
