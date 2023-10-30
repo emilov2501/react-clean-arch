@@ -7,7 +7,7 @@ import { BASE_URL } from "../../../../core/constants/constants";
 @BasePath(BASE_URL)
 export class TodoApiService extends BaseService {
   @GET("/todos")
-  getTodos(@Query("q") _query: string): Response<TodoModel[]> {
+  getTodos(@Query("q") _query: string | null): Response<TodoModel[]> {
     return {} as Response<TodoModel[]>;
   }
 }

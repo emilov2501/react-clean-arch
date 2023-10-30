@@ -9,7 +9,7 @@ export class TodoRepositoryImpl implements TodoRepository {
 
   async getTodos(params?: TodoQueriesEntity): Promise<TodoModel[]> {
     try {
-      const todos = await this.todoApiService.getTodos(params?.query ?? "");
+      const todos = await this.todoApiService.getTodos(params?.query ?? null);
       return todos.data.map((todo) => new TodoModel().fromJSON(todo));
     } catch (e) {
       throw new AxiosError(`GET_TODOS: ${e}`);
